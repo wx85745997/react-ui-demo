@@ -4,22 +4,22 @@ import Menu, { MenuPorps } from './menu'
 import MenuItem from './menuItem'
 
 const testProps: MenuPorps = {
-    defultIndex: 0,
+    defultIndex: '0',
     onSelect: jest.fn(),
     className: 'test'
 }
 
 const testVerProps: MenuPorps = {
-    defultIndex: 0,
+    defultIndex: '0',
     mode: 'vertical'
 }
 
 const generateMenu = (props:MenuPorps) => {
     return (
         <Menu {...props}>
-            <MenuItem index={0}>active</MenuItem>
-            <MenuItem disabled index={1}>disabled</MenuItem>
-            <MenuItem index={2}>xyz</MenuItem>
+            <MenuItem index={'0'}>active</MenuItem>
+            <MenuItem disabled index={'0'}>disabled</MenuItem>
+            <MenuItem index={'0'}>xyz</MenuItem>
         </Menu>
     )
 }
