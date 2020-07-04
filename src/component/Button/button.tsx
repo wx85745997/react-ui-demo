@@ -1,19 +1,13 @@
-import React from 'react'
+import React,{ButtonHTMLAttributes,AnchorHTMLAttributes,FC} from 'react'
 import classNames from 'classnames'
 
-export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
-}
 
-export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
-  Danger = 'Danger',
-  Link = 'link',
-}
+type ButtonSize = 'lg' | 'sm'
+
+type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
 interface BaseButtonProps {
+  /**设置类型*/ 
   className?: string
   disabled?: boolean
   size?: ButtonSize
@@ -23,22 +17,29 @@ interface BaseButtonProps {
 }
 
 type NativeButtonProps = BaseButtonProps &
-  React.ButtonHTMLAttributes<HTMLElement>
+  ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = BaseButtonProps &
-  React.AnchorHTMLAttributes<HTMLElement>
+  AnchorHTMLAttributes<HTMLElement>
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { btnType, disabled, size, children, href,className, ...restProps } = props
+/**
+* 这是我们第一个组件
+*~~~js
+~import{ button} from 'vikiing' 
+*~~~
+*/ 
+
+export const Button: FC<ButtonProps> = (props) => {
+  const { btnType, disabled, size, children, href, className, ...restProps } = props
   const classes = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
-    disabled: btnType === ButtonType.Link && disabled,
+    disabled: btnType === 'link' && disabled,
   })
 
 
-  if (btnType === ButtonType.Link && href) {
+  if (btnType === 'link' && href) {
     return (
       <a className={classes} href={href} {...restProps}>
         {children}
@@ -53,9 +54,10 @@ const Button: React.FC<ButtonProps> = (props) => {
   }
 }
 
+
 Button.defaultProps = {
   disabled: false,
-  btnType: ButtonType.Default,
+  btnType: 'primary',
 }
 
 export default Button

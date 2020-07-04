@@ -21,7 +21,7 @@ const App: React.FC = () => {
         onSelect={(index) => {
           alert(index)
         }}
-        mode="vertical"
+        mode="horizontal"
         defultOpenSubMenu={['3']}
       >
         <MenuItem>cool</MenuItem>
